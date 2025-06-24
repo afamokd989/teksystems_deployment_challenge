@@ -1,0 +1,16 @@
+.terraform/
+
+# Terraform state files
+*.tfstate
+*.tfstate.backup
+
+# Terraform crash logs
+crash.log
+
+# Terraform plan files
+*.tfplan
+
+# macOS system file
+.DS_Store
+**/.terraform/
+**/.terraform.lock.hcl
