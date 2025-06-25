@@ -11,31 +11,32 @@ This repository contains completed solutions for the TEKsystems Control Deployme
 ## Repository structure
 
 ```
-
-
 .
+├── .github
+│   └── workflows
+│       └── lambda-deploy.yml        # GitHub Actions pipeline for Lambda
 ├── README.md
-├── part1-cybersecurity               # Part 1 Cybersecurity analysis and documentation
+├── part1-cybersecurity
 │   └── README.md
 ├── part2-container-security
-│   ├── Dockerfile                    # Hardened Dockerfile with best practices
-│   ├── README.md                     # Part 2, Explanation and configurations
-│   └── main.py                       # Python application
-└── part3-cicd                        # Part 3 Infrastructure provisioning and GitHub Actions for serverless deployment
-    ├── task1-terraform-nginx         # Task1 Terraform webserver deployment
+│   ├── Dockerfile
+│   ├── README.md
+│   └── main.py
+└── part3-cicd
+    ├── README.md
+    ├── task1-terraform-nginx
     │   ├── main.tf
     │   ├── outputs.tf
     │   ├── provider.tf
-    │   ├── terraform.auto.tfvars
-    │   ├── terraform.tfstate
-    │   ├── terraform.tfstate.backup
     │   └── variables.tf
-    └── task3-github-actions-lambda
+    └── task3-lambda-deploy
+        ├── bootstrap-lambda.py
+        ├── lambda.tf
         ├── lambda_function.py
         ├── requirements.txt
-        └── .github
-            └── workflows
-                └── lambda-deploy.yml
+        ├── terraform.auto.tfvars
+        └── vars.tf
+
 
 ```
 
