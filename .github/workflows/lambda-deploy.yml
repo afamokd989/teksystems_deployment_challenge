@@ -58,10 +58,10 @@ jobs:
       with:
         terraform_version: 1.5.7
         terraform_wrapper: false
-        
+
     - name: Terraform Init
       run: terraform init
-      working-directory: part3-cicd/task3-lambda-deploy/terraform
+      working-directory: part3-cicd/task3-lambda-deploy
       shell: bash
 
     - name: Validate Terraform
