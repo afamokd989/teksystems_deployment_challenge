@@ -42,9 +42,22 @@ jobs:
 
     - name: Run unit tests
       run: |
+        pip install pytest
         export PYTHONPATH=${PYTHONPATH}:$(pwd)
         pytest tests
       working-directory: part3-cicd/task3-lambda-deploy
+
+    - name: Run unit tests
+      run: |
+        export PYTHONPATH=${PYTHONPATH}:$(pwd)
+        pytest tests
+      working-directory: part3-cicd/task3-lambda-deploy
+      
+    - name: Set up Terraform
+      uses: hashicorp/setup-terraform@v2.0.0
+      with:
+        terraform_version: 1.5.7
+        terraform_wrapper: false
 
     - name: Validate Terraform
       run: terraform validate
