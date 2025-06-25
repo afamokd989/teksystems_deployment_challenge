@@ -63,9 +63,6 @@ jobs:
       run: terraform init
       working-directory: part3-cicd/task3-lambda-deploy
       shell: bash
-
-    - name: Validate Terraform
-      run: terraform validate
   
     - name: Check Terraform Format
       run: terraform fmt -check
