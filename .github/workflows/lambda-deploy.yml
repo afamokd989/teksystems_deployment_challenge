@@ -27,7 +27,6 @@ jobs:
     - name: Install dependencies
       run: |
         mkdir -p package
-        cd package
         # Install dependencies into the package directory
         pip install -r ../../part3-cicd/task3-lambda-deploy/requirements.txt -t ./package
         cp ../../part3-cicd/task3-lambda-deploy/lambda_function.py ./package
