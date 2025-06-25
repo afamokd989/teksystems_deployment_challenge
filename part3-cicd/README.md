@@ -71,3 +71,6 @@ Deploys zipped package to afam-financial-lambda function using appleboy/lambda-a
 ## Resource screenshots
 Lambda
 <img width="1873" alt="Screenshot 2025-06-25 at 3 00 32 PM" src="https://github.com/user-attachments/assets/3805b9a4-f590-4e26-85eb-62b32ad6197f" />
+EC2 Instance/VM
+<img width="1669" alt="Screenshot 2025-06-25 at 3 03 35 PM" src="https://github.com/user-attachments/assets/dad14795-b106-4194-914f-2df3f9165b96" />
+<img width="1915" alt="Screenshot 2025-06-25 at 3 07 13 PM" src="https://github.com/user-attachments/assets/b061bec8-92f2-4787-96b9-ed16f8b729ce" />
