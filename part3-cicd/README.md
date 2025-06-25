@@ -65,5 +65,9 @@ Installs Python 3.11 and dependencies from requirements.txt.
 
 Zips lambda_function.py and its dependencies.
 
+
 Deploys zipped package to afam-financial-lambda function using appleboy/lambda-action.
 ```
+## Resource screenshots
+Lambda
+<img width="1873" alt="Screenshot 2025-06-25 at 3 00 32 PM" src="https://github.com/user-attachments/assets/3805b9a4-f590-4e26-85eb-62b32ad6197f" />
