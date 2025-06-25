@@ -1,0 +1,47 @@
+name: Deploy Lambda
+
+on:
+  push:
+    paths:
+      - 'part3-cicd/task3-lambda-deploy/**'
+      - '.github/workflows/lambda-deploy.yml'
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: part3-cicd/task3-lambda-deploy
+        shell: bash
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: 3.11
+
+    - name: Install dependencies
+      run: |
+        pip install -r ../../part3-cicd/task3-lambda-deploy/requirements.txt -t ./package
+        cp part3-cicd/task3-lambda-deploy/lambda_function.py ./package
+
+    - name: Zip and deploy
+      run: |
+        cd package
+        zip -r ../output.zip .
+        cd ..
+      shell: bash
+
+    - name: Deploy to Lambda
+      uses: appleboy/lambda-action@v0.2.0
+      with:
+        aws_access_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws_region: ${{ secrets.AWS_REGION }}
+        function_name: afam-financial-lambda
+        zip_file: output.zip
+        publish: true

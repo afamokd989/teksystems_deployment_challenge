@@ -1,5 +1,6 @@
 resource "aws_iam_role" "lambda_exec" {
-  name = "afam-bootstrap-lambda-execution-role"
+  name        = var.lambda_exec_role_name
+  description = "IAM role for Lambda execution with basic permissions"
 
   assume_role_policy = jsonencode({
     Version = "2012-10-17",
@@ -22,13 +23,14 @@ resource "aws_iam_role" "lambda_exec" {
 
 resource "aws_iam_role_policy_attachment" "lambda_basic_execution" {
   role       = aws_iam_role.lambda_exec.name
-  policy_arn = "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+  policy_arn = var.policy_arn
 }
 
 resource "aws_lambda_function" "afam-financial-lambda" {
-  function_name = "afam-financial-lambda"
+  function_name = var.lambda_function_name
+  description   = "Bootstrap Lambda function for Afam Financial"
   role          = aws_iam_role.lambda_exec.arn
-  handler       = "bootstrap-lambda.lambda_handler"
+  handler       = var.lambda_handler
   runtime       = "python3.11"
 
   filename         = "${path.module}/bootstrap_lambda.zip"
