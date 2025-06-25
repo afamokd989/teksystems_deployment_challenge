@@ -57,5 +57,5 @@ jobs:
         aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws_region: ${{ secrets.AWS_REGION }}
         function_name: afam-financial-lambda
-        zip_file: output.zip
+        zip_file: /home/runner/work/teksystems_deployment_challenge/teksystems_deployment_challenge/part3-cicd/task3-lambda-deploy/output.zip
         publish: true
