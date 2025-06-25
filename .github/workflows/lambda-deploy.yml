@@ -34,17 +34,17 @@ jobs:
       run: |
         pip install flake8
         flake8 ../../part3-cicd/task3-lambda-deploy/lambda_function.py
-        
+
     - name: Lint with pylint
       run: |
         pip install pylint
         pylint ../../part3-cicd/task3-lambda-deploy/lambda_function.py
 
-
     - name: Run unit tests
       run: |
-        pip install pytest
-        pytest ../../part3-cicd/task3-lambda-deploy/tests
+        export PYTHONPATH=${PYTHONPATH}:$(pwd)
+        pytest tests
+      working-directory: part3-cicd/task3-lambda-deploy
 
     - name: Validate Terraform
       run: terraform validate
