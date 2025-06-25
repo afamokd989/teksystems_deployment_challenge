@@ -30,6 +30,27 @@ jobs:
         # Install dependencies into the package directory
         pip install -r ../../part3-cicd/task3-lambda-deploy/requirements.txt -t ./package
         cp ../../part3-cicd/task3-lambda-deploy/lambda_function.py ./package
+    - name: Lint with flake8
+      run: |
+        pip install flake8
+        flake8 ../../part3-cicd/task3-lambda-deploy/lambda_function.py
+        
+    - name: Lint with pylint
+      run: |
+        pip install pylint
+        pylint ../../part3-cicd/task3-lambda-deploy/lambda_function.py
+
+
+    - name: Run unit tests
+      run: |
+        pip install pytest
+        pytest ../../part3-cicd/task3-lambda-deploy/tests
+
+    - name: Validate Terraform
+      run: terraform validate
+  
+    - name: Check Terraform Format
+      run: terraform fmt -check
 
     - name: Zip and deploy
       run: |
