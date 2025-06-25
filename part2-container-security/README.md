@@ -44,7 +44,7 @@ RUN chown -R appuser:appgroup /app
 RUN addgroup -S appgroup && adduser -S appuser -G appgroup
 
 ```
-- This code snippet cis from the docker image which creates a dedicated ```appuser ``` without root privileges.
+- This code snippet is from the docker image which creates a dedicated ```appuser ``` without root privileges.
 
 - It also ensures that the application does not run with elevated permissions inside the container.
 
@@ -77,7 +77,7 @@ docker run secure-app
 In Afam financial;
     + Network policies can be used to isolate front-end apps from sensitive backend pods.
     + Only allow  API pods to communicate with the databases.
-    + Block internet facing trafic from internal services.
+    + Block internet facing traffic from internal services.
 Example;
 ```
 apiVersion: networking.k8s.io/v1
@@ -126,7 +126,7 @@ Pod security standards define the kind of security behaviors allowed in Kubernet
 ## Infrastructure as a Service (IaaS)
 
 ### What is IaaS?
-Infrastructure as a Service (IaaS) is a cloud computing model that delivers ondemand access to virtualized **servers**, **storage**, and **networking** over the internet. It allows organizations to rent IT infrastructure from a cloud provider, scale resources as needed, and eliminate the cost and complexity of managing physical hardware.
+Infrastructure as a Service (IaaS) is a cloud computing model that delivers on-demand access to virtualized **servers**, **storage**, and **networking** over the internet. It allows organizations to rent IT infrastructure from a cloud provider, scale resources as needed, and eliminate the cost and complexity of managing physical hardware.
 
 ---
 

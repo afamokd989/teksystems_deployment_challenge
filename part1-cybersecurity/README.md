@@ -5,21 +5,21 @@ Given the breach involved an unpatched web application in Afam financial, severa
     - File management.
     - Out-of-bounds write.
     - Insecure deserialization.
-- **Server-Side request forgery(SSRF)** - Given that this breach came through an unpatched web application, assuming that one of the financial applications accepts user inputs like URL and API endpoints, to make server side requests without proper validation and sanitization, this applcation can be vulnerable to SSRF. 
+- **Server-Side request forgery(SSRF)** - Given that this breach came through an unpatched web application, assuming that one of the financial applications accepts user inputs like URL and API endpoints, to make server side requests without proper validation and sanitization, this application can be vulnerable to SSRF. 
 A common pattern will look like this;
 ```
 url = request.GET['target']
 response = requests.get(url)
 
 ```
-In Afam Financial's case if the assuming the application accepted external urls for any server side processing(API relay, webhook) then SSRF can be exploited. In the context of cloud infrastructure,SSRF is particularly dangerous because it allows attackers to reach internal services, access metadata, and potentially steal temporary cloud credentials. This may allow attackers to; reach internal services, access cloud provider metadata endpoints.
+In Afam Financial's case, assuming the application accepted external urls for any server side processing(API relay, webhook) then SSRF can be exploited. In the context of cloud infrastructure,SSRF is particularly dangerous because it allows attackers to reach internal services, access metadata, and potentially steal temporary cloud credentials. This may allow attackers to; reach internal services, access cloud provider metadata endpoints.
 
 - **SQL Injection and XSS(Cross site scripting)** - In Cross Site Scripting injection data can be included into dynamic content thats sent into the Web user without malicious content validation, this could be in form of the following types;
-    - Stored Xss type - stored attacks occur where the script is injected permanently on the target web servers.
+    - Stored XSS type - stored attacks occur where the script is injected permanently on the target web servers.
     Executed by Server -> Browser
-    - Reflected XSS type - With Reflected XSS the injected script is reflected off the web browser such as search results aor responses that would include some or all the input that is sent to the server as part of the request. In this type of XSS the attacks are delivered by another route, via email message. Users can be tricked via social engineering by clicking on a malicious link or browsing on the malicious site presented, the injected code travels to the vulnerable web site, which reflects the attack back to the user’s browser.
+    - Reflected XSS type - With Reflected XSS the injected script is reflected off the web browser such as search results or responses that would include some or all the input that is sent to the server as part of the request. In this type of XSS the attacks are delivered by another route, via email message. Users can be tricked via social engineering by clicking on a malicious link or browsing on the malicious site presented, the injected code travels to the vulnerable web site, which reflects the attack back to the user’s browser.
     Executed by Server -> Browser
-    - DOM(Document Object Model) based attack - In this xss attack the attack payload is executed due to modification of the DOM ont he client side javascript and not the server side, 
+    - DOM(Document Object Model) based attack - In this xss attack the attack payload is executed due to modification of the DOM on the client side javascript and not the server side, 
     Executed by Browser only.
 Furthermore, with SQL Injection attacks, malicious code is inserted into strings (input fields not properly parameterized)that are later passed to an instance of our SQL Server Database Engine for parsing and execution. All our SQL procedures that constructs SQL statements should be reviewed for injection vulnerabilities, considering that Database Engines execute all syntactically valid queries that it receives.
 
@@ -56,7 +56,7 @@ To better understand the breach and develop a response strategy, I applied the P
 ### 4. SSRF Prevention
 - Enforcement of IMDSv2 for EC2 metadata access, to leverage IMDSv2, we would be disabling old IMDSv1 should that have used.
 - Tighten firewall rules and disable unnecessary outbound traffic with NACLs and egress restrictions
-- Inpput validation and whitelisting URLs if the web applcation needs to fectch external resources
+- Input validation and whitelisting URLs if the web applcation needs to fectch external resources
 
 
 ### 5. Security Training for Developer Awareness
@@ -67,7 +67,7 @@ To better understand the breach and develop a response strategy, I applied the P
 - Compliance enforcement and awareness trainings
 
 ### 6. Use Network Segmentation, Isolate environments 
-- AWS Private link can be used tor service to service communicationsas an added layer of security.
+- AWS Private link can be used tor service to service communications as an added layer of security.
 - Use Transit Gateways to restrict traffic like EAST-WEST Traffic
 - Separate environments tiers with VPCs, Subnets, Security groups
 
@@ -108,9 +108,9 @@ it matters because once a vulnerability is disclosed, adversaries can weaponize 
 
 ## Eradication
 
-+ The team rescanned infrastructue with Amazon Insepctorand other scanning tools.
-+ Audit where son on IAM roles and excessive permissions removed.
-+ Input validationwas implemented and raw URL handling was disable in code bases.
++ The team rescanned infrastructue with Amazon Insepctor and other scanning tools.
++ Audit where run on IAM roles and excessive permissions removed.
++ Input validation was implemented and raw URL handling was disable in code bases.
 
 ## Recovery
 Post Containment and Eradication, recovery will focus on safely restoring services and verifying system integrity to avoid future recurrence.
