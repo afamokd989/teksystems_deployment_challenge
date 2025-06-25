@@ -35,21 +35,22 @@ jobs:
       run: |
         cd package
         zip -r ../output.zip .
+        mv output.zip ../..
       shell: bash
-    - name: Debug output.zip location
-      run: |
-        ls -lh
-        file output.zip
-        echo "Output zip file created at: $(pwd)/output.zip"
-    - name: Upload output.zip
-      run: |
-        echo "Ensuring output.zip is available..."
-        if [ -f "output.zip" ]; then
-          echo "output.zip exists and is ready for deployment."
-        else
-          echo "Error: output.zip not found!"
-          exit 1
-        fi
+    # - name: Debug output.zip location
+    #   run: |
+    #     ls -lh
+    #     file output.zip
+    #     echo "Output zip file created at: $(pwd)/output.zip"
+    # - name: Upload output.zip
+    #   run: |
+    #     echo "Ensuring output.zip is available..."
+    #     if [ -f "output.zip" ]; then
+    #       echo "output.zip exists and is ready for deployment."
+    #     else
+    #       echo "Error: output.zip not found!"
+    #       exit 1
+    #     fi
     - name: Deploy to Lambda
       uses: appleboy/lambda-action@v0.2.0
       with:
