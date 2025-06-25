@@ -35,7 +35,7 @@ jobs:
       run: |
         cd package
         zip -r ../output.zip .
-        mv output.zip ../..
+        mv output.zip ..
       shell: bash
     # - name: Debug output.zip location
     #   run: |
