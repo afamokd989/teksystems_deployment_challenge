@@ -5,7 +5,7 @@ Lambda function module for Afam Financial.
 import json
 
 
-def lambda_handler(event, context): # pylint: disable=unused-argument
+def lambda_handler(event, context):   # pylint: disable=unused-argument
     """
     AWS Lambda entry point.
 
