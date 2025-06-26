@@ -40,11 +40,9 @@ jobs:
         pip install pylint
         pylint ../../part3-cicd/task3-lambda-deploy/lambda_function.py
 
-    - name: Run unit tests
+    - name: Install pytest
       run: |
         pip install pytest
-        export PYTHONPATH=${PYTHONPATH}:$(pwd)
-        pytest tests
       working-directory: part3-cicd/task3-lambda-deploy
 
     - name: Run unit tests
