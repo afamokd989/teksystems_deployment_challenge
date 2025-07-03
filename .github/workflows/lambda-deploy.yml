@@ -106,6 +106,18 @@ jobs:
     #       echo "Error: output.zip not found!"
     #       exit 1
     #     fi
+    - name: Save Trivy Report
+      run: |
+        trivy fs . --format json -o trivy-report.json
+        echo "Trivy report saved to trivy-report.json"
+        
+    - name: Upload Trivy Report
+      # Upload the Trivy report as an artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: trivy-report
+        path: trivy-report.json
+
     - name: Deploy to Lambda
       uses: appleboy/lambda-action@v0.2.0
       with:
