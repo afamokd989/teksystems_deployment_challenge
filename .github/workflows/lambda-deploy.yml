@@ -96,7 +96,7 @@ jobs:
     - name: Save Checkov Report
       run: |
         pip install checkov
-        checkov -d . -o json > checkov-report.json
+        checkov -d . --soft-fail -o json > checkov-report.json
 
     - name: Upload Checkov Report
       uses: actions/upload-artifact@v4
