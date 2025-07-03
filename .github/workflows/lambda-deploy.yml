@@ -87,6 +87,24 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+    - name: 🔍 Checkov IaC Scan
+      uses: bridgecrewio/checkov-action@v12.2546.0
+      with:
+        directory: part3-cicd/task3-lambda-deploy
+        framework: terraform
+        soft_fail: true
+    - name: Save Checkov Report
+      run: |
+        pip install checkov
+        checkov -d . -o json > checkov-report.json
+
+    - name: Upload Checkov Report
+      uses: actions/upload-artifact@v4
+      with:
+        name: checkov-report
+        path: part3-cicd/task3-lambda-deploy/checkov-report.json
+  
+
     - name: Zip and deploy
       run: |
         cd package
