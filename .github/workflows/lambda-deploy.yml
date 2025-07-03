@@ -116,7 +116,7 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: trivy-report
-        path: trivy-report.json
+        path: part3-cicd/task3-lambda-deploy/trivy-report.json
 
     - name: Deploy to Lambda
       uses: appleboy/lambda-action@v0.2.0
