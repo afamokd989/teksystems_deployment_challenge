@@ -11,6 +11,10 @@ spec:
   selector:
     matchLabels:
       app: {{ .Values.app.name }}
+  securityContext:
+    runAsUser: {{ .Values.deployment.securityContext.runAsUser }}
+    runAsGroup: {{ .Values.deployment.securityContext.runAsGroup }}
+    fsGroup: {{ .Values.deployment.securityContext.fsGroup }}
   template:
     metadata:
       labels:
@@ -28,9 +32,9 @@ spec:
           ports:
             - containerPort: {{ .Values.container.port }}
           securityContext:
-            allowPrivilegeEscalation: false
-            readOnlyRootFilesystem: true
-            runAsNonRoot: true
+            runAsNonRoot: {{ .Values.deployment.securityContext.runAsNonRoot }}
+            allowPrivilegeEscalation: {{ .Values.deployment.securityContext.allowPrivilegeEscalation }}
+            readOnlyRootFilesystem: {{ .Values.deployment.securityContext.readOnlyRootFilesystem }}
             capabilities:
               drop:
                 - ALL

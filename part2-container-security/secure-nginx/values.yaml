@@ -10,6 +10,16 @@ rbac:
 deployment:
   name: nginx-deployment
   replicas: 2
+  securityContext:
+  runAsUser: 1000
+  runAsGroup: 3000
+  fsGroup: 2000
+  runAsNonRoot: true
+  allowPrivilegeEscalation: false
+  readOnlyRootFilesystem: true
+  capabilities:
+    drop:
+      - ALL
 
 app:
   name: nginx
