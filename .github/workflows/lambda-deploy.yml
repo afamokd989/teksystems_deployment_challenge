@@ -44,6 +44,20 @@ jobs:
       run: |
         pip install pytest
       working-directory: part3-cicd/task3-lambda-deploy
+    
+    - name: Trivy filesystem scan
+      uses: aquasecurity/trivy-action@v0.28.0
+      with:
+        format: 'table'
+        scan: 'filesystem'
+        scan_ref: '.'
+        exit_code: '0'
+        ignore_unfixed: true
+        vuln_type: 'os,library'
+        severity: 'CRITICAL,HIGH,MEDIUM'
+        ignore_file: '.trivyignore'
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Run unit tests
       run: |
@@ -64,6 +78,16 @@ jobs:
   
     - name: Check Terraform Format
       run: terraform fmt -check
+
+    - name: tfsec iac
+      uses: aquasecurity/tfsec-action@v1.0.0
+      with:
+        format: 'json'
+        soft_fail: true
+        version: 'latest'
+        working-directory: part3-cicd/task3-lambda-deploy
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Zip and deploy
       run: |
