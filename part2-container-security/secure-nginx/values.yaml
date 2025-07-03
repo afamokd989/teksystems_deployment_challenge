@@ -1,0 +1,40 @@
+serviceAccount:
+  name: my-service-account
+
+rbac:
+  roleName: app-role
+  roleBindingName: app-rolebinding
+  clusterRoleName: app-cluster-role
+  clusterRoleBindingName: app-cluster-rolebinding
+
+deployment:
+  name: nginx-deployment
+  replicas: 2
+
+app:
+  name: nginx
+
+container:
+  name: nginx
+  image: nginx:1.29.0
+  port: 80
+
+service:
+  name: nginx-service
+  port: 80
+
+ingress:
+  name: nginx-ingress
+  host: my-nginx.example.com
+  tls: true
+  tlsSecret: nginx-tls-secret
+
+image:
+  repository: nginx
+  tag: "1.29.0"
+  pullPolicy: IfNotPresent
+
+secret:
+name: nginx-secret
+username: bmdnaW4=
+password: cGFzc3dvcmQ=
