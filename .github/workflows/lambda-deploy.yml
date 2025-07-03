@@ -110,10 +110,10 @@ jobs:
       run: |
         trivy fs . --format json -o trivy-report.json
         echo "Trivy report saved to trivy-report.json"
-        
+
     - name: Upload Trivy Report
       # Upload the Trivy report as an artifact
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: trivy-report
         path: trivy-report.json
