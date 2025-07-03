@@ -49,13 +49,11 @@ jobs:
       uses: aquasecurity/trivy-action@master
       with:
         format: 'table'
-        scan: 'filesystem'
+        scan_type: 'fs'
         scan_ref: '.'
-        exit_code: '0'
+        exit_code: '1'
         ignore_unfixed: true
-        vuln_type: 'os,library'
         severity: 'CRITICAL,HIGH,MEDIUM'
-        ignore_file: '.trivyignore'
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
