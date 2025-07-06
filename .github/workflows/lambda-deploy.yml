@@ -103,7 +103,6 @@ jobs:
       with:
         name: checkov-report
         path: part3-cicd/task3-lambda-deploy/checkov-report.json
-  
 
     - name: Zip and deploy
       run: |
